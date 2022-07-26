@@ -1,0 +1,11 @@
+goos: linux
+goarch: amd64
+pkg: github.com/bootcamp-go/testing/fibonacci
+cpu: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
+BenchmarkFibonacci-8   	182483560	         6.309 ns/op
+BenchmarkFibonacci-8   	190244626	         6.210 ns/op
+BenchmarkFibonacci-8   	192855166	         6.228 ns/op
+BenchmarkFibonacci-8   	192126013	         6.286 ns/op
+BenchmarkFibonacci-8   	192699624	         6.216 ns/op
+PASS
+ok  	github.com/bootcamp-go/testing/fibonacci	9.141s

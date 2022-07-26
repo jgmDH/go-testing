@@ -1,0 +1,42 @@
+[
+ {
+  "Id": 1,
+  "Codigo": "123412",
+  "Moneda": "dollar",
+  "Emisor": "juan",
+  "Receptor": "alguien",
+  "Monto": 123.3
+ },
+ {
+  "Id": 2,
+  "Codigo": "123412",
+  "Moneda": "dollar",
+  "Emisor": "juan",
+  "Receptor": "alguien",
+  "Monto": 123.3
+ },
+ {
+  "Id": 3,
+  "Codigo": "123412",
+  "Moneda": "dollar",
+  "Emisor": "juan",
+  "Receptor": "alguien",
+  "Monto": 123.3
+ },
+ {
+  "Id": 4,
+  "Codigo": "123412",
+  "Moneda": "dollar",
+  "Emisor": "juan",
+  "Receptor": "alguien",
+  "Monto": 123.3
+ },
+ {
+  "Id": 5,
+  "Codigo": "123412",
+  "Moneda": "dollar",
+  "Emisor": "juan",
+  "Receptor": "alguien",
+  "Monto": 123.3
+ }
+]
