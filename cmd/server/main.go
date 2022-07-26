@@ -37,14 +37,9 @@ func main() {
 	rTransaction := router.Group("transactions")
 	rTransaction.GET("/", h.GetAll())
 	rTransaction.POST("/", h.Store())
-	rTransaction.PUT("/:id", h.Update())
-	rTransaction.DELETE("/:id", h.Delete())
-	rTransaction.PATCH("/:id", h.UpdateReceptorYMonto())
 
 	// Detectado por golangci-lint
-	if err := router.Run(); err != nil {
-		panic(err)
-	}
+	router.Run()
 }
 
 func loadEnv() {

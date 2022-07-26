@@ -4,7 +4,7 @@ on:
     tags:
       - v*
     branches:
-      - master
+      - clase
       - main
   pull_request:
 permissions:

@@ -1,11 +1,10 @@
 package transactions
 
+import "github.com/bootcamp-go/internal/domains"
+
 type Service interface {
-	GetAll() ([]*Transaction, error)
-	Store(codigo, moneda, emisor, receptor string, monto float64) (*Transaction, error)
-	Update(id int64, codigo, moneda, emisor, receptor string, monto float64) (*Transaction, error)
-	UpdateReceptorYMonto(id int64, receptor string, monto float64) (*Transaction, error)
-	Delete(id int64) error
+	GetAll() ([]*domains.Transaction, error)
+	Store(codigo, moneda, emisor, receptor string, monto float64) (*domains.Transaction, error)
 }
 
 type service struct {
@@ -16,11 +15,11 @@ func NewService(r Repository) Service {
 	return &service{rep: r}
 }
 
-func (s *service) GetAll() ([]*Transaction, error) {
+func (s *service) GetAll() ([]*domains.Transaction, error) {
 	return s.rep.GetAll()
 }
 
-func (s *service) Store(codigo, moneda, emisor, receptor string, monto float64) (*Transaction, error) {
+func (s *service) Store(codigo, moneda, emisor, receptor string, monto float64) (*domains.Transaction, error) {
 	lastId, err := s.rep.LastId()
 	if err != nil {
 		return nil, err
@@ -28,16 +27,4 @@ func (s *service) Store(codigo, moneda, emisor, receptor string, monto float64) 
 
 	lastId++
 	return s.rep.Store(lastId, codigo, moneda, emisor, receptor, monto)
-}
-
-func (s *service) Update(id int64, codigo, moneda, emisor, receptor string, monto float64) (*Transaction, error) {
-	return s.rep.Update(id, codigo, moneda, emisor, receptor, monto)
-}
-
-func (s *service) UpdateReceptorYMonto(id int64, receptor string, monto float64) (*Transaction, error) {
-	return s.rep.UpdateReceptorYMonto(id, receptor, monto)
-}
-
-func (s *service) Delete(id int64) error {
-	return s.rep.Delete(id)
 }

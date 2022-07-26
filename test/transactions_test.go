@@ -3,7 +3,6 @@ package test
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -38,9 +37,7 @@ func createServer() *gin.Engine {
 	r := gin.New()
 
 	r.GET("/transactions", ts.GetAll())
-	r.PUT("/transactions/:id", ts.Update())
 	r.POST("/transactions", ts.Store())
-	r.DELETE("/transactions/:id", ts.Delete())
 
 	return r
 }
@@ -116,29 +113,4 @@ func Test_StoreTransactions_Ok(t *testing.T) {
 	s.ServeHTTP(rw, req)
 
 	assert.Equal(t, 200, rw.Code)
-}
-
-func Test_UpdateTransactions_Ok(t *testing.T) {
-	body := `{"emisor":"José María Alonso", "receptor":"Alvaro José", "monto":1233.99, "moneda":"dollar", "codigo":"134sdfs"}`
-	url := fmt.Sprintf("/transactions/%d", 1)
-	req, rw := createRequestTest(http.MethodPut, url, body)
-
-	s.ServeHTTP(rw, req)
-	assert.Equal(t, 200, rw.Code)
-}
-
-func Test_DeleteTransactions_Ok(t *testing.T) {
-	// s := createServer()
-	store := store.NewFileStore(store.FileType, "./transactions.json")
-	ts := []*transactions.Transaction{{Id: 1, Codigo: "abc123", Moneda: "peso", Emisor: "Juan Manuel", Receptor: "Gissel Rivas", Monto: 129.99}}
-	store.Write(ts)
-
-	url := fmt.Sprintf("/transactions/%d", 1)
-	req, rw := createRequestTest(http.MethodDelete, url, "")
-	s.ServeHTTP(rw, req)
-
-	assert.Equal(t, 200, rw.Code)
-
-	// Creamos la transaction eliminada para poder ejercutar el test las veces que sean necesarias.
-	store.Write(ts)
 }
