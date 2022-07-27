@@ -6,7 +6,6 @@ import (
 	"github.com/bootcamp-go/cmd/server/handler"
 	"github.com/bootcamp-go/internal/transactions"
 	"github.com/bootcamp-go/pkg/store"
-	"github.com/bootcamp-go/pruebastaticcheck"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
@@ -16,7 +15,7 @@ import (
 )
 
 // Detectado por staticcheck, golangci-lint
-var variablenousada string
+//var variablenousada string
 
 func main() {
 	loadEnv()
@@ -26,7 +25,7 @@ func main() {
 
 	// Detectado por staticcheck
 	fmt.Println(p.Print())
-	fmt.Println(pruebastaticcheck.Print())
+	fmt.Println(p.Print())
 
 	router := gin.Default()
 	db := store.NewFileStore(store.FileType, "./transactions.json")
@@ -39,7 +38,9 @@ func main() {
 	rTransaction.POST("/", h.Store())
 
 	// Detectado por golangci-lint
-	router.Run()
+	if err := router.Run(); err != nil {
+		panic(err)
+	}
 }
 
 func loadEnv() {

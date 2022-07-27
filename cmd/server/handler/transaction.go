@@ -95,7 +95,9 @@ func (t *Transaction) GetAllHttp() http.HandlerFunc {
 		}
 
 		w.Header().Set("Content-type", "application/json")
-		w.Write(dataJson)
+		if _, err := w.Write(dataJson); err != nil {
+			panic(err)
+		}
 	}
 }
 
